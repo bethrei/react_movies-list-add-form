@@ -39,14 +39,14 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
       return;
     }
 
-    if (newValue === '') {
+    if (newValue.trim() === '') {
       setErrors(prevErrors => ({
         ...prevErrors,
         [field]: `${label} is required`,
       }));
     }
 
-    if (!errors[field] && field.includes('Url') && !checkUrl(newValue)) {
+    if (!errors[field] && field.includes('Url') && !checkUrl(newValue.trim())) {
       setErrors(prevErrors => ({
         ...prevErrors,
         [field]: `${label} is not valid`,
@@ -59,11 +59,11 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
       ...prevErrors,
       [field]: '',
     }));
-    setMovie(prevMovie => ({ ...prevMovie, [field]: newValue }));
+    setMovie(prevMovie => ({ ...prevMovie, [field]: newValue.trim() }));
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     onAdd(movie);
     setCount(prevCount => prevCount + 1);
     setMovie({
