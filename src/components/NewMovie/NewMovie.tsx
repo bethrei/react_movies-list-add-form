@@ -59,7 +59,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
       ...prevErrors,
       [field]: '',
     }));
-    setMovie(prevMovie => ({ ...prevMovie, [field]: newValue.trim() }));
+    setMovie(prevMovie => ({ ...prevMovie, [field]: newValue }));
   }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
